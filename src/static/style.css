@@ -44,11 +44,6 @@ select, input {
   text-align: center 
 }
 
-
-#chart{
-  background-color: #E9EBEE
-}
-
 td{
   margin: 0;
   border-bottom: 2px #eee solid;
@@ -80,6 +75,7 @@ footer {
   margin-left: 40px;
 }
 #y_axis {
+  background-color: #F4F4F4;
   position: absolute;
   top: 0;
   bottom: 0;

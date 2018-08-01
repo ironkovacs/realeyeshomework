@@ -3,6 +3,7 @@ const fromCurrency = document.querySelector('#from-select');
 const toValue = document.querySelector('#to-value');
 const toCurrency = document.querySelector('#to-select');
 const latestDate = document.querySelector('#latest');
+const chartContainer = document.querySelector("#chart_container");
 
 const xhttp = new XMLHttpRequest();
 
@@ -28,8 +29,6 @@ xhttp.onreadystatechange = function () {
 
     latestDate.innerText = jsonObj[0].time;
     data = getActiveCurrencyHistory()
-
-    renderChart()
   };
 };
 
@@ -113,6 +112,7 @@ const recalculate = () => {
   activeCurrencies.exchRate = (fromValue.value / activeCurrencies.from.rate * activeCurrencies.to.rate);
   toValue.innerText = finantial(activeCurrencies.exchRate);
 
+
 };
 
 const finantial = (n) => {
@@ -132,6 +132,28 @@ const getRate = (currency, arr, i) => {
 const getTimestamp = (date) => {
   return Math.floor(new Date(date).getTime() / 1000)
 }
+
+const getData = (prefix) => {
+  recalculate();
+  data = getActiveCurrencyHistory()
+  let arr = [];
+  if (prefix == 'from' || prefix == 'to') {
+    for (let i = data.length; i > 0; i--) {
+      arr.push(data[i - 1][prefix])
+    }
+    return arr
+  } else if (prefix == 'exc') {
+    for (let i = data.length; i > 0; i--) {
+      arr.push(
+        {
+          x: data[i - 1].from.x,
+          y: Number(data[i - 1].to.y / data[i - 1].from.y)
+        }
+      )
+    }
+    return arr
+  }
+};
 
 fromValue.addEventListener('keyup', () => {
   recalculate();
@@ -163,21 +185,7 @@ toCurrency.addEventListener('change', () => {
   renderChart();
 });
 
-const getData = (prefix) => {
-  recalculate();
-  data = getActiveCurrencyHistory()
-  if(prefix != 'EUR'){
-    let arr = [];
-  for (let i = data.length; i > 0; i--) {
-    arr.push(data[i-1][prefix])
-  }
-  return arr
-  }else{
-
-  }
-  
-};
-
+window.addEventListener('resize', () => { renderChart() });
 
 xhttp.open("GET", "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml", true);
 xhttp.send();
