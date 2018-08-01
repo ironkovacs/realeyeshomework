@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./src/rickshaw/vendor/d3.min.js"></script>
+  <script src="./src/rickshaw/vendor/d3.layout.min.js"></script>
+  <script src="./src/rickshaw/rickshaw.min.js"></script>
+  <link rel="stylesheet" href="./src/rickshaw/rickshaw.min.css">
+
+  <link rel="stylesheet" href="./src/static/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+    crossorigin="anonymous">
+  <title>Currency Exchange</title>
+</head>
+
+<body>
+  <header>
+    <h1>
+      <i class="far fa-money-bill-alt"></i> Currency Exchange</h1>
+  </header>
+  <main>
+    <table class="exchange">
+      <thead>
+        <tr>
+          <td class="from">From</td>
+          <td class="to">To</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <select name="curr-from" class="from" id="from-select">
+              <option>EUR</option>
+            </select>
+          </td>
+          <td>
+            <select name="curr-to" class="to" id="to-select">
+              <option>EUR</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="number" min="0" step="0.01" id="from-value" value="1" requred id="exc-amount">
+          </td>
+          <td id="to-value"> 1 </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <div class="history">
+    <h2>Exchange rate history of the chosen currencies</h2>
+    <div id="chart_container">
+      <div id="y_axis"></div>
+      <div id="chart"></div>
+    </div>
+    <div id="legend"></div>
+
+  </div>
+  <footer>
+    <p>The reference rates are usually updated around 16:00 CET on every working day, except on TARGET closing days. They are
+      based on a regular daily concertation procedure between central banks across Europe, which normally takes place at
+      14:15 CET. </p>
+    <p>
+      Euro foreign exchange reference rates:
+      <span id="latest">1999-12-31</span>
+    </p>
+    <p>All currencies quoted against the euro (base currency)
+    </p>
+    <p>
+      Currency data and rates are from
+      <a href="http://www.ecb.europa.eu">
+        ECB - European Central Bank
+      </a> -
+      <a href="http://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">
+        Euro foreign exchange reference rates
+      </a>
+    </p>
+  </footer>
+  <script type="text/javascript" src="./src/javascript/script.js"></script>
+  <script type="text/javascript" src="./src/javascript/chart.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  font-size: 16px;
+  font-family: Roboto;
+}
+
+header {
+  height: 10rem;
+  background-color: #F4F4F4;
+  background-size: cover;
+  border-bottom: 2px #E9EBEE solid
+}
+
+header>h1 {
+  padding: 2rem;
+  font-size: 3rem;
+  color: #777;
+}
+header>h1>i {
+  color: #000
+}
+
+
+main {
+  padding: 2rem;
+  border-bottom: 2px #E9EBEE solid;
+}
+
+.history {
+  padding: 2rem;
+  border-bottom: 2px #E9EBEE solid;
+}
+
+select, input {
+  width: 100%;
+  height: 5rem;
+  border: none;
+  font-size: 3rem;
+  text-align: center 
+}
+
+
+#chart{
+  background-color: #E9EBEE
+}
+
+td{
+  margin: 0;
+  border-bottom: 2px #eee solid;
+}
+
+#to-value {
+  width: 50%;
+  font-size: 3rem;
+  background-color: #eee;
+  color: #333;
+  margin:auto;
+  text-align: center
+  
+}
+
+footer {
+  background-color: #FAFAFA;
+  padding: 2rem;
+  font-size: 10px
+}
+
+#chart_container {
+  position: relative;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#chart {
+  display: inline-block;
+  margin-left: 40px;
+}
+#y_axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+}
+#legend {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 0 10px;
+}
