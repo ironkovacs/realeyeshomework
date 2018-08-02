@@ -13,7 +13,6 @@ let activeCurrencies = {
   exchRate: 1
 }
 
-let lofasz;
 let xmlDoc;
 let data
 let jsonObj;
@@ -187,5 +186,5 @@ toCurrency.addEventListener('change', () => {
 
 window.addEventListener('resize', () => { renderChart() });
 
-xhttp.open("GET", "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml", true);
+xhttp.open("GET", "https://thingproxy.freeboard.io/fetch/http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml", true);
 xhttp.send();
