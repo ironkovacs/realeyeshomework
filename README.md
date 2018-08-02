@@ -14,3 +14,7 @@ data-structure or database. Build a web interface that provides:
 - Grid layout, responsive, 4size
 - Exchange chosen currencies
 - Nation flags and Currency symbols
+
+
+### Konwn bugs:
+- Chart insn't working if you exchange FROM "EUR"
