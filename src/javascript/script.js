@@ -86,19 +86,48 @@ const getActiveCurrencyHistory = () => {
   let history = [];
 
   for (let i = 0; i < jsonObj.length; i++) {
-    history.push(
-      {
-        'from': {
-          x: getTimestamp(jsonObj[i].time),
-          y: Number(getRate(activeCurrencies.from.currency, jsonObj, i))
-        },
-
-        'to': {
-          x: getTimestamp(jsonObj[i].time),
-          y: Number(getRate(activeCurrencies.to.currency, jsonObj, i))
-        },
-      }
-    )
+    if (activeCurrencies.from.currency == "EUR") {
+      history.push(
+        {
+          'from': {
+            x: getTimestamp(jsonObj[i].time),
+            y: 1
+          },
+          'to': {
+            x: getTimestamp(jsonObj[i].time),
+            y: Number(getRate(activeCurrencies.to.currency, jsonObj, i))
+          },
+        }
+      )
+    }
+    else if (activeCurrencies.from.currency == "EUR") {
+      history.push(
+        {
+          'from': {
+            x: getTimestamp(jsonObj[i].time),
+            y: Number(getRate(activeCurrencies.from.currency, jsonObj, i))
+          },
+          'to': {
+            x: getTimestamp(jsonObj[i].time),
+            y: 1
+          },
+        }
+      )
+    }
+    else {
+      history.push(
+        {
+          'from': {
+            x: getTimestamp(jsonObj[i].time),
+            y: Number(getRate(activeCurrencies.from.currency, jsonObj, i))
+          },
+          'to': {
+            x: getTimestamp(jsonObj[i].time),
+            y: Number(getRate(activeCurrencies.to.currency, jsonObj, i))
+          },
+        }
+      )
+    }
   }
   return history
 };
@@ -108,10 +137,12 @@ const recalculate = () => {
     activeCurrencies.to.currency = 'EUR';
     activeCurrencies.to.rate = '1';
   }
+  if (fromCurrency.innerText == 'EUR') {
+    activeCurrencies.from.currency = 'EUR';
+    activeCurrencies.from.rate = '1';
+  }
   activeCurrencies.exchRate = (fromValue.value / activeCurrencies.from.rate * activeCurrencies.to.rate);
   toValue.innerText = finantial(activeCurrencies.exchRate);
-
-
 };
 
 const finantial = (n) => {
@@ -140,7 +171,6 @@ const getData = (prefix) => {
     for (let i = data.length; i > 0; i--) {
       arr.push(data[i - 1][prefix])
     }
-    return arr
   } else if (prefix == 'exc') {
     for (let i = data.length; i > 0; i--) {
       arr.push(
@@ -150,9 +180,9 @@ const getData = (prefix) => {
         }
       )
     }
-    return arr
-  }
-};
+  };
+  return arr
+}
 
 fromValue.addEventListener('keyup', () => {
   recalculate();
